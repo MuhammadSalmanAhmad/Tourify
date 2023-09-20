@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tourify/Company_Login_Authentication/company_login.dart';
+import 'package:tourify/CompanyFlow/Company_Login_Authentication/company_login.dart';
 import 'package:tourify/HomeScreen.dart';
 import 'package:tourify/MainPanel/MainPanel.dart';
 import 'package:tourify/user_Auth_login_screens/SignIn.dart';
 import 'package:tourify/user_Auth_login_screens/SignUp.dart';
 import 'package:tourify/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tourify/Company_Login_Authentication/registeration.dart';
+import 'package:tourify/CompanyFlow/Company_Login_Authentication/registeration.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
