@@ -32,13 +32,13 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
   final fireStore=FirebaseFirestore.instance.collection('Company');
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20)))),
                   ),
-
+      
                   const SizedBox(
                     height: 30,
                   ),
@@ -295,8 +295,8 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                     ],
                   )
                 ],
-              ),
-            )),
+              )),
+        ),
       ),
     );  ;
   }

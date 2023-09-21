@@ -32,13 +32,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final auth = FirebaseAuth.instance;
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20,),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -273,8 +273,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   )
                 ],
-              ),
-            )),
+              )),
+        ),
       ),
     );
   }
