@@ -20,25 +20,28 @@ class _SplashScreenState extends State<SplashScreen> {
 
     //set timer for splash screen
 
-    auth.authStateChanges().listen((User?user) {
+    auth.authStateChanges().listen((User? user) {
       if (user == null) {
         Future.delayed(const Duration(seconds: 5)).then((value) =>
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: ((context) {
-          return const SignInScreen();
-        }))));
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: ((context) {
+              return const SignInScreen();
+            }))));
       } else {
-       Navigator.of(context)
+        Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: ((context) {
           return const MainScreen();
         })));
       }
     });
-     Future.delayed(const Duration(seconds: 5)).then((value) =>
+   /* 
+   Future.delayed(const Duration(seconds: 5)).then((value) =>
+     
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: ((context) {
           return const OnboardingScreen();
         }))));
+    */
   }
 
   void dispose() {

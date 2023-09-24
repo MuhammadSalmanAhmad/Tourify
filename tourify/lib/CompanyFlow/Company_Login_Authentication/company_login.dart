@@ -116,7 +116,7 @@ class _CompanySignInState extends State<CompanySignIn> {
                                     password:
                                         passwordController.text.toString())
                                 .then((value) =>
-                                    Navigator.pushNamed(context, "MainScreen"));
+                                    Navigator.pushNamed(context, "CompanyHomeScreen"));
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               ScaffoldMessenger.of(context)

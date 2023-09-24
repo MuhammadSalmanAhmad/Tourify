@@ -18,8 +18,9 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.bottom]);
   }
+
   @override
-   final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final UserNameController = TextEditingController();
   final WebsiteController = TextEditingController();
   final EmailController = TextEditingController();
@@ -29,14 +30,15 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
   final AddressController = TextEditingController();
   final auth = FirebaseAuth.instance;
 
-  final fireStore=FirebaseFirestore.instance.collection('Company');
+  final fireStore = FirebaseFirestore.instance.collection('Company');
+
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal:20 ),
           child: Form(
               key: _formKey,
               child: Column(
@@ -68,7 +70,6 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20)))),
                   ),
-      
                   const SizedBox(
                     height: 30,
                   ),
@@ -89,7 +90,7 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20)))),
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   TextFormField(
@@ -129,7 +130,8 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20))),
                       labelText: 'Password',
                       hintText: 'Enter Password',
                       labelStyle: TextStyle(
@@ -147,15 +149,15 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter a password';
-                      }
-                      else if (value != PasswordController.text) {
+                      } else if (value != PasswordController.text) {
                         return 'Passwords do not match';
                       }
                     },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.password),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20))),
                       labelText: 'Confirm Password',
                       hintText:
                           'Please re-enter your password for confirmation',
@@ -174,9 +176,11 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.location_on),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20))),
                       labelText: 'Address',
-                      hintText: 'Provide your address for personalized service',
+                      hintText:
+                          'Provide your address for personalized service',
                       labelStyle: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -227,28 +231,29 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')));
+                              const SnackBar(
+                                  content: Text('Processing Data')));
                         }
                         try {
-                          String uid =  DateTime.now().microsecondsSinceEpoch.toString();
-                              
+                          String uid = DateTime.now()
+                              .microsecondsSinceEpoch
+                              .toString();
+        
                           await auth
                               .createUserWithEmailAndPassword(
                                   email: EmailController.text,
                                   password: PasswordController.text)
-                              .then((value) =>
-                            
-                             fireStore.doc(uid).set({
-                                'Company name': UserNameController.text,
-                                'Website': WebsiteController.text,
-                                'Email': EmailController.text,
-                                'Password': PasswordController.text,
-                                'Address': AddressController.text,
-                                'PhoneNumber': PhoneNumberController.text,
-                              }).then((value) => Navigator.pushNamed(context, 'CompanySignInScreen'))
-                                 
-                                  );
-                                 
+                              .then((value) => fireStore
+                                      .doc(auth.currentUser!.uid)
+                                      .set({
+                                    'Company name': UserNameController.text,
+                                    'Website': WebsiteController.text,
+                                    'Email': EmailController.text,
+                                    'Password': PasswordController.text,
+                                    'Address': AddressController.text,
+                                    'PhoneNumber': PhoneNumberController.text,
+                                  }).then((value) => Navigator.pushNamed(
+                                          context, 'CompanySignInScreen')));
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -261,7 +266,6 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                                     content: Text(
                                         'The account already exists for that email.')));
                           }
-                          
                         } catch (e) {
                           print(e);
                         }
@@ -280,10 +284,12 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Already have an account?",
-                          style: TextStyle(color: Colors.black, fontSize: 15)),
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 15)),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, 'CompanySignInScreen');
+                            Navigator.pushNamed(
+                                context, 'CompanySignInScreen');
                           },
                           child: const Text(
                             "Login",
@@ -298,6 +304,7 @@ class _CompanyRegisterationState extends State<CompanyRegisteration> {
               )),
         ),
       ),
-    );  ;
+    );
+    ;
   }
 }

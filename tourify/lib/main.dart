@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourify/CompanyFlow/Company_Login_Authentication/company_login.dart';
+import 'package:tourify/CompanyFlow/CompanyHomeScreen/company_homescreen.dart';
 import 'package:tourify/HomeScreen.dart';
 import 'package:tourify/MainPanel/MainPanel.dart';
 import 'package:tourify/user_Auth_login_screens/SignIn.dart';
@@ -27,6 +28,7 @@ void main() async {
       'MainScreen':(context) => const MainScreen (), 
       'CompanyRegistration':(context) => const CompanyRegisteration (),
       'CompanySignInScreen':(context) => const CompanySignIn (),
+      'CompanyHomeScreen':(context) => const CompanyHomeScreen (),
 
     },
   ));
