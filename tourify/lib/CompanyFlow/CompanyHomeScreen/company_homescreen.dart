@@ -26,6 +26,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: const Text("Tourify"),
         centerTitle: true,
         backgroundColor: const Color(0xff1034A6),
